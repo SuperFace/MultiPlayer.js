@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store,no-siteapp, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<META HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08:21:57 GMT">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-title" content="学堂直播">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="full-screen" content="yes">
+	<meta name="x5-fullscreen" content="true">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="screen-orientation" content="portrait">
+	<meta name="x5-orientation" content="portrait">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MultiPlayer demo</title>
+    <meta content="" name="keywords">
+    <meta content="该播放器Web SDK让您可以在主流的桌面和移动端浏览器上播放hls协议的直播视频以及mp4、m3u8格式的点播视频。" name="description">
+    <style>
+    *{
+    	padding:0;
+    	margin:0;
+    }
+    .video-container{
+		position:relative;
+		width:100%;
+		padding:0;
+		margin:0;
+		background:#000;
+	}
+    </style>
+    <link rel="stylesheet" href="../dist/MultiPlayer.min.css">
+</head>
+<body>
+<div id="video-container" class="video-container">
+    
+</div>
+<div id="debug" style="margin:30px auto;width:100%;line-height:20px;padding:20px;text-align:center;font-size:13px;border:1px solid #aaa;"></div>
+<script type="text/javascript" src="../dist/jquery.min.js"></script>
+<script type="text/javascript" src="../dist/MultiPlayer.min.js"></script>
+<script>
+
+function resize(){
+	$("#video-container").css({height: ($("#video-container").width()*9/16)+"px"});
+}
+$(window).on("resize.demo", function(){
+	resize();
+});
+resize();
+
+var player = new MultiPlayer($("#video-container"), {
+    server: 'vod',//live-直播、vod-点播
+  	logo: "",//自定义logo 
+  	title: "标题",//自定义title
+  	speed: {
+      show: true,
+      speedValue: [2.5, 2.0, 1.5, 1.0, 0.5],
+  	},
+  	poster: "",
+  	audioposter: "",
+  	controls: true,
+  	bigPlayButton: true,
+	urls: {
+		hlsUrl: {
+			url: "http://xxxxxxx/index.m3u8",
+			url_720: "http://xxxxxxx/index.m3u8",
+			url_480: "http://xxxxxxx/index.m3u8",
+			url_audio: "http://xxxxxxx_audio/index.m3u8"
+		},
+		vodUrl: {	
+			// url: "http://xxxxxxx/index.m3u8",
+			// url_720: "http://xxxxxxx/index.m3u8",
+			// url_480: "http://xxxxxxx/index.m3u8",
+			// url_audio: "http://xxxxxxx_audio/index.m3u8"
+			url: "test.mp4",
+			url_high: "test.mp4",
+			url_720: "test.mp4",
+			url_480: "test.mp4",
+			url_1080: "test.mp4",
+			url_audio: "test.mp4"
+		}
+	},
+	startTime: null,
+	endTime: null,
+  	position: null
+});
+player.on("ended", function(e){
+	  
+});
+player.on("timeupdate", function(event, data){
+  
+});
+player.on("share", function(){
+	console.log(99);
+});
+</script>
+</body>
+</html>
